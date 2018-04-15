@@ -1,0 +1,19 @@
+{
+  "name": "marked_planning",
+  "version": "1.0.0",
+  "description": "planning md to html",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuelWeb/markedPlan.git"
+  },
+  "author": "macfly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manuelWeb/markedPlan/issues"
+  },
+  "homepage": "https://github.com/manuelWeb/markedPlan#readme"
+}
