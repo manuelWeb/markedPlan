@@ -81,15 +81,18 @@ function reqListener() {
     function addIdx() {
       for (var i = 0; i < tab1.length; i++) {
         if( tab1[i].textContent === tab2[cpt] ) {
-          console.log('job:',cpt,tab1[i]);
+          console.log('job:',cpt,tab1[i],tab1[i].textContent);
         }
       }
-    } addIdx()
-    /*while(cpt < tab1.length) {
       cpt++;
-      addIdx()
-      // getIdx(td_deadline,arry_sort)
-    }*/
+    }
+
+    while(cpt < tab1.length && tab2[cpt]) {
+      tab2.shift();
+      alert(tab2[cpt]);
+      console.log('while cpt: ' + cpt);
+      addIdx();
+    }
   }
   getIdx(td_deadline,arry_sort);
 
