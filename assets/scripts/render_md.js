@@ -56,8 +56,7 @@ function reqListener() {
     // return td_deadline;
   };
   td_get_deadline();
-  console.log(td_deadline, td_deadline[0].textContent, td_deadline_txt[0].split('/'));
-  // console.log('fdfklsjf: '+td_deadlinetest)
+  // console.log(td_deadline, td_deadline[0].textContent, td_deadline_txt[0].split('/'));
   function toObject(arr) {
     var rv = {};
     for (var i = 0; i < arr.length; ++i)
@@ -66,36 +65,46 @@ function reqListener() {
   };
   // console.log(toObject(td_deadline));
   const objTd = toObject(td_deadline);
-  console.log(objTd)
+  // console.log(objTd)
   // création tableaux de dates en ordre décroissantes  
   const arry_sort = td_deadline_txt.sort(function(a, b){
     var aa = a.split('/').reverse().join(),
         bb = b.split('/').reverse().join();
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
   });
-  console.log(arry_sort);
   // console.log(td_deadline[0].textContent);
   
+  function onlyUnique(value, index, self) { 
+      return self.indexOf(value) === index;
+  }
+  const arry_date_unique = arry_sort.filter(onlyUnique);
+  console.log('td_deadline: ', td_deadline );
+  console.log('arry_sort: ', arry_sort);
+  console.log('arry_date_unique: ', arry_date_unique);
+  // console.log(td_deadline,arry_sort);
   var cpt = 0;
   function getIdx(tab1, tab2) {
     function addIdx() {
       for (var i = 0; i < tab1.length; i++) {
         if( tab1[i].textContent === tab2[cpt] ) {
           console.log('job:',cpt,tab1[i],tab1[i].textContent);
+          tab1[i].innerHTML += '<span class="job">' + (cpt + 1) + '</span>'; 
         }
       }
-      cpt++;
     }
 
-    while(cpt < tab1.length && tab2[cpt]) {
-      tab2.shift();
-      alert(tab2[cpt]);
-      console.log('while cpt: ' + cpt);
+    // while(cpt < tab1.length && tab2[cpt]) {
+    while(cpt < tab1.length) {
+      // tab2.shift();
+      // alert(tab2[cpt]);
       addIdx();
+      cpt++;
+      // console.log('while cpt: ' + cpt, `while tab2[cpt]: ${tab2[cpt]} `);
     }
   }
-  getIdx(td_deadline,arry_sort);
 
+  // getIdx(td_deadline,arry_sort);
+  getIdx(td_deadline,arry_date_unique);
 }
 
 var xobj = new XMLHttpRequest();
