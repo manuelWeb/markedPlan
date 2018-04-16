@@ -74,13 +74,24 @@ function reqListener() {
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
   });
   console.log(arry_sort);
-  var cpt = 0;
-  for (let txt of arry_sort) {
-    console.log(`txt: ${txt}, cellule: `);
-    cpt++;
-  }
+  // console.log(td_deadline[0].textContent);
   
-
+  var cpt = 0;
+  function getIdx(tab1, tab2) {
+    function addIdx() {
+      for (var i = 0; i < tab1.length; i++) {
+        if( tab1[i].textContent === tab2[cpt] ) {
+          console.log('job:',cpt,tab1[i]);
+        }
+      }
+    } addIdx()
+    /*while(cpt < tab1.length) {
+      cpt++;
+      addIdx()
+      // getIdx(td_deadline,arry_sort)
+    }*/
+  }
+  getIdx(td_deadline,arry_sort);
 
 }
 
@@ -90,3 +101,8 @@ xobj.addEventListener("load", reqListener);
 xobj.open("GET", url);
 xobj.send();
 
+  /*var cpt = 0;
+  for (let txt of arry_sort) {
+    console.log(`txt: ${txt}, cellule: `);
+    cpt++;
+  }*/
