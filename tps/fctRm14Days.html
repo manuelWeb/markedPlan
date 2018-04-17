@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>date - 14 jours</title>
+  <style type="text/css">
+    .newDate {
+      font: 2em Arial, "Helvetica Neue", Helvetica, sans-serif;
+      color: #2bad11;
+    }
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+    function goBack() {window.history.back();}
+    var old_date = prompt("enter date to remove 14 days","jj/mm/aa");
+    if (old_date === null){
+      alert('valeur incorrect retour au planning dl2017 !');
+      document.location = "./dl2017.md";
+    }else{
+      document.body.innerHTML = '<div class="newDate">' + rmDaysToDate(old_date) +'</div>' + '<button onclick="goBack()">' + 'retour' + '</button>'
+    }
+
+    function rmDaysToDate(old_date) {
+      // split date dd / mm / yy
+      var split_date = old_date.split("/");
+      // Les mois 0 a 11 donc on enleve 1, cast avec *1
+      var new_date = new Date(
+        split_date[2], // yy
+        split_date[1] * 1 - 1, // mm
+        split_date[0] * 1 - 14 // days
+      );
+      
+      var new_day   = new_date.getDate();
+      var new_month = new_date.getMonth() + 1;
+      var new_year  = new_date.getYear();
+
+      new_day = (new_day < 10 ? "0" : "") + new_day; // ajoute un zéro devant pour la forme
+      new_month = (new_month < 10 ? "0" : "") + new_month; // ajoute un zéro devant pour la forme
+
+      var new_date_text = new_day + "/" + new_month + "/" + new_year;
+      return new_date_text;
+    }
+  </script>
+</body>
+</html>
