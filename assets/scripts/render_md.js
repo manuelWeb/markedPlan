@@ -59,13 +59,14 @@ function reqListener() {
       return self.indexOf(value) === index;
   }
 
-  function getIdx(tab1, tab2, classpan) {
+  function getIdx(tab1, tab2, classpan, ok) {
     var cpt = 0;
     function addIdx() {
       for (var i = 0; i < tab1.length; i++) {
         if( tab1[i].textContent === tab2[cpt] ) {
           // console.log('job:',cpt,tab1[i],tab1[i].textContent);
-          tab1[i].innerHTML += '<span class="' + classpan + '">' + (cpt + 1) + '</span>'; 
+          // tab1[i].innerHTML += '<span class="' + classpan + '">' + (cpt + 1) + '</span>'; 
+          cpt === 0 ? tab1[i].innerHTML += '<span class="' + ok + '">' + (cpt + 1) + '</span>' : tab1[i].innerHTML += '<span class="' + classpan + '">' + (cpt + 1) + '</span>'; 
         }
       }
     }
@@ -77,8 +78,8 @@ function reqListener() {
     }
   }
 
-  getIdx(deadline_td, dead_unique, "job");
-  getIdx(date_n_td, date_n_unique, "daten");
+  getIdx(deadline_td, dead_unique, "job", "ok");
+  getIdx(date_n_td, date_n_unique, "daten", "ok");
 
 } // end reqListener
 
