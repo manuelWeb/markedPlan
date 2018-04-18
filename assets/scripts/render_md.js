@@ -8,8 +8,8 @@ function reqListener() {
   document.getElementById('content').innerHTML = marked(monmd);
   
   // get table tr td[3]
-  const table_row     = document.querySelectorAll("table tr");
-  let regDates        = /[0-9]{2}\/[0-9]{2}\/(17|18)/ig;
+  const table_row = document.querySelectorAll("table tr");
+  const regDates  = /[0-9]{2}\/[0-9]{2}\/(17|18)/ig;
   
   const get_td = (tab_tr,td_idx) => {
     const cel = [], txt = [];
@@ -31,25 +31,28 @@ function reqListener() {
   };
 
   // retour des td + td.txt :
+  // console.log( deadline_td );
+  // console.log( deadline_txt );
   const deadline_td = get_td(table_row,3)[0];
   const deadline_txt = get_td(table_row,3)[1];
-  console.log( deadline_td );
-  console.log( deadline_txt );
+  const dead_sort = sortAryArg(deadline_txt);
+  const dead_unique = dead_sort.filter(onlyUnique);
 
+  function sortAryArg (ary) {
+    return ary.sort(function(a, b){
+      let aa = a.split('/').reverse().join(),
+          bb = b.split('/').reverse().join();
+      return aa < bb ? -1 : (aa > bb ? 1 : 0);
+      // console.log(aa < bb ? -1 : (aa > bb ? 1 : 0));
+    });
+  }
 
-  
-  const arry_sort_ = deadline_txt.sort(function(a, b){
-    var aa = a.split('/').reverse().join(),
-        bb = b.split('/').reverse().join();
-    return aa < bb ? -1 : (aa > bb ? 1 : 0);
-  });
-  console.log( arry_sort_ );
+  console.log( 'dead_sort:', dead_sort );
   
   function onlyUnique(value, index, self) { 
       return self.indexOf(value) === index;
   }
 
-  const arry_date_unique_ = arry_sort_.filter(onlyUnique);
 
 
   var cpt = 0;
@@ -70,7 +73,7 @@ function reqListener() {
     }
   }
 
-  getIdx(deadline_td, arry_date_unique_);
+  getIdx(deadline_td, dead_unique);
 
 } // end reqListener
 
