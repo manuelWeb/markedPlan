@@ -1,7 +1,8 @@
 marked.setOptions({});
 
 var monmd = '';
-var url   = "./dl2018.md"
+var url   = "../../md/dl2018.md";
+var url   = "md/dl2018.md";
 
 function reqListener() {
   monmd = this.responseText;
